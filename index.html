@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Basorak Store — Telur Fresh Setiap Pekan</title>
+  <meta name="description" content="Basorak Store: PO telur fresh, harga bersahabat, layanan ramah. Promo bundling & giveaway rutin." />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#ffffff;        /* putih segar */
+      --ink:#1c1e1f;
+      --muted:#6b7280;
+      --brand:#F39C12;     /* orange */
+      --brand-2:#146e4c;   /* forest green */
+      --brand-2-deep:#0e5a3f;
+      --wood:#8b5a2b;      /* ranting kayu */
+      --leaf1:#2aa06d;     /* daun */
+      --leaf2:#1f8b59;
+      --card:#ffffff;
+      --ring:#f1f1f1;
+      --shadow:0 10px 30px rgba(0,0,0,.06);
+      --radius:22px;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0}
+    body{font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--ink)}
+    img{max-width:100%;display:block}
+    a{color:inherit;text-decoration:none}
+    .container{width:min(1120px,92%);margin-inline:auto}
+
+    /* NAV */
+    header{position:sticky;top:0;z-index:60;background:rgba(255,255,255,.92);backdrop-filter:saturate(140%) blur(8px);border-bottom:1px solid #f1f1f1}
+    .nav{display:flex;align-items:center;justify-content:space-between;padding:14px 0}
+    .brand{display:flex;gap:10px;align-items:center;font-weight:800}
+    .brand-badge{width:42px;height:42px;border-radius:14px;display:grid;place-items:center;background:linear-gradient(135deg,var(--brand) 0%, #ffbf4d 100%);color:#fff;box-shadow:var(--shadow)}
+    .nav a{font-weight:600}
+    .nav-cta{display:flex;gap:10px;align-items:center}
+
+    /* Buttons */
+    .btn{display:inline-flex;align-items:center;gap:.6rem;padding:.85rem 1.1rem;border-radius:14px;font-weight:700;border:2px solid transparent;cursor:pointer;transition:.2s}
+    .btn-primary{background:var(--brand-2);color:#fff}
+    .btn-primary:hover{background:var(--brand-2-deep)}
+    .btn-ghost{background:#fff;border-color:#e9e9e9}
+    .btn-ghost:hover{border-color:#d9d9d9}
+
+    /* Decorative corner tree branches */
+    .branch{position:fixed;top:-6px;width:320px;height:240px;z-index:40;pointer-events:none;opacity:.22}
+    .branch.left{left:-14px;transform:rotate(-2deg)}
+    .branch.right{right:-14px;transform:scaleX(-1) rotate(-2deg)}
+
+    /* HERO */
+    .hero{padding:68px 0 26px;position:relative;z-index:50}
+    .hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:26px;align-items:center}
+    .hero h1{font-size:clamp(32px,3.2vw,54px);line-height:1.02;margin:0 0 12px;font-weight:800}
+    .subtitle{color:var(--muted);font-size:1.05rem}
+    .hero-card{background:var(--card);border:1px solid var(--ring);border-radius:var(--radius);box-shadow:var(--shadow);padding:22px}
+    .hero-pills{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px}
+    .pill{font-size:.86rem;padding:.35rem .6rem;border-radius:999px;border:1px solid #ddd;background:#fff}
+
+    .hero-visual{position:relative}
+    .vendor{max-width:410px;margin-inline:auto;filter:drop-shadow(0 14px 35px rgba(0,0,0,.18))}
+    .eggs-float{position:absolute;right:-6px;bottom:-14px;width:190px;transform:rotate(-6deg);filter:drop-shadow(0 12px 26px rgba(0,0,0,.18))}
+
+    /* PROMO STRIP */
+    .promo-strip{margin-top:18px;background:linear-gradient(90deg,#0e5a3f,#178b60);color:#fff;border-radius:16px;padding:14px 16px;display:flex;gap:12px;align-items:center;justify-content:space-between}
+    .promo-label{font-weight:900;letter-spacing:.4px;background:#ffe08a;color:#0d3b2d;padding:.25rem .55rem;border-radius:999px}
+    .promo-edit-hint{font-size:.85rem;opacity:.8}
+
+    /* SECTIONS */
+    .section{padding:64px 0}
+    .section.alt{background:#fafafa}
+    .center{text-align:center}
+    h2.section-title{font-size:clamp(22px,2.2vw,34px);margin:0 0 10px;font-weight:800}
+
+    /* FEATURES */
+    .features{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .card{background:var(--card);border:1px solid #f1f1f1;border-radius:18px;padding:18px;box-shadow:var(--shadow)}
+    .card h3{margin:0 0 6px;font-size:18px}
+
+    /* PRODUCT PRICES */
+    .price-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+    .price{border:1px solid #f1f1f1;border-radius:18px;background:#fff;padding:0 0 18px;display:flex;flex-direction:column;overflow:hidden}
+    .price-img{width:100%;aspect-ratio:4/3;object-fit:cover;background:#fff}
+    .price-body{padding:16px 18px;display:flex;flex-direction:column;gap:6px}
+    .price .name{font-weight:800}
+    .price .nom{font-size:20px;font-weight:800;color:var(--brand-2)}
+    .badge-strike{font-size:.9rem;color:#9aa1a8;text-decoration:line-through}
+    .mini{font-size:.9rem;color:var(--muted)}
+
+    /* CTA */
+    .cta{background:linear-gradient(135deg,#fff 0%, #fafafa 100%);border:1px solid #f0f0f0;border-radius:22px;box-shadow:var(--shadow);padding:26px}
+
+    /* TESTIMONIALS */
+    .testi{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .t-card{background:#fff;border:1px solid #f1f1f1;border-radius:18px;padding:18px;box-shadow:var(--shadow)}
+    .t-head{display:flex;align-items:center;gap:12px;margin-bottom:8px}
+    .avatar{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;background:#eef7f1;color:#0e5a3f;font-weight:800}
+    .stars{color:#f59e0b;font-size:18px;letter-spacing:2px}
+
+    /* FAQ */
+    details{background:#fff;border:1px solid #f1f1f1;border-radius:14px;padding:10px 14px}
+    summary{list-style:none;cursor:pointer;font-weight:700}
+    summary::-webkit-details-marker{display:none}
+    details+details{margin-top:10px}
+
+    /* Footer + grass decorative */
+    footer{position:relative;padding:60px 0 110px;color:#5f6a70;overflow:hidden}
+    .grass{position:absolute;left:0;right:0;bottom:0;height:140px;pointer-events:none;opacity:.28}
+
+    /* Responsive */
+    @media (max-width:980px){
+      .branch{width:230px;height:200px}
+      .hero-grid{grid-template-columns:1fr}
+      .features, .price-grid, .testi{grid-template-columns:1fr}
+      .eggs-float{position:static;margin:16px auto 0;transform:none}
+    }
+  </style>
+</head>
+<body>
+  <!-- Corner tree branches (SVG with wood + leaves) -->
+  <svg class="branch left" viewBox="0 0 320 240" aria-hidden="true">
+    <path d="M10 200 C 70 170, 120 150, 170 120 C 220 90, 250 70, 300 60" fill="none" stroke="var(--wood)" stroke-width="14" stroke-linecap="round"/>
+    <path d="M120 150 C 140 140, 150 130, 170 120" fill="none" stroke="var(--wood)" stroke-width="10" stroke-linecap="round"/>
+    <path d="M210 95 C 225 90, 245 78, 260 68" fill="none" stroke="var(--wood)" stroke-width="10" stroke-linecap="round"/>
+    <g fill="var(--leaf1)"><path d="M132 138 q18 -10 32 0 q-14 14 -32 0"/><path d="M232 88 q18 -10 32 0 q-14 14 -32 0"/><path d="M188 116 q16 -10 28 0 q-12 12 -28 0"/></g>
+    <g fill="var(--leaf2)" opacity=".9"><path d="M152 132 q16 -10 28 0 q-12 12 -28 0"/><path d="M252 82 q16 -10 28 0 q-12 12 -28 0"/></g>
+  </svg>
+  <svg class="branch right" viewBox="0 0 320 240" aria-hidden="true">
+    <path d="M10 200 C 70 170, 120 150, 170 120 C 220 90, 250 70, 300 60" fill="none" stroke="var(--wood)" stroke-width="14" stroke-linecap="round"/>
+    <path d="M120 150 C 140 140, 150 130, 170 120" fill="none" stroke="var(--wood)" stroke-width="10" stroke-linecap="round"/>
+    <path d="M210 95 C 225 90, 245 78, 260 68" fill="none" stroke="var(--wood)" stroke-width="10" stroke-linecap="round"/>
+    <g fill="var(--leaf1)"><path d="M132 138 q18 -10 32 0 q-14 14 -32 0"/><path d="M232 88 q18 -10 32 0 q-14 14 -32 0"/><path d="M188 116 q16 -10 28 0 q-12 12 -28 0"/></g>
+    <g fill="var(--leaf2)" opacity=".9"><path d="M152 132 q16 -10 28 0 q-12 12 -28 0"/><path d="M252 82 q16 -10 28 0 q-12 12 -28 0"/></g>
+  </svg>
+
+  <!-- NAV -->
+  <header>
+    <div class="container nav">
+      <a class="brand" href="#top"><span class="brand-badge">BS</span><span>Basorak Store</span></a>
+      <nav class="nav-cta">
+        <a href="#harga" class="btn btn-ghost">Harga</a>
+        <a href="#promo" class="btn btn-ghost">Promo</a>
+        <a href="#order" class="btn btn-primary">Order</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section id="top" class="hero container">
+    <div class="hero-grid">
+      <div class="hero-card">
+        <div class="hero-pills"><span class="pill">Farm Fresh</span><span class="pill">100% Indonesia</span><span class="pill">PO Mingguan</span></div>
+        <h1>Telur Fresh, Harga Bersahabat — dari Basorak Store</h1>
+        <p class="subtitle">Belanja telur kualitas pilihan untuk rumah & UMKM. Pesan cepat via WhatsApp, diantar sesuai jadwal PO.</p>
+        <div id="promo" class="promo-strip"><span class="promo-label">PROMO</span><div style="font-weight:800">Omega 2 Pack <span style="opacity:.85">—</span> Rp 54.000</div><span class="promo-edit-hint">*Edit teks ini saat promo berubah</span></div>
+        <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:14px"><a class="btn btn-primary" href="#order">Pesan Sekarang</a><a class="btn btn-ghost" href="#harga">Lihat Harga</a></div>
+      </div>
+      <div class="hero-visual"><img class="vendor" src="assets/vendor.png" alt="Abang Basorak menyapa" /><img class="eggs-float" src="assets/eggs.png" alt="Keranjang telur" /></div>
+    </div>
+  </section>
+
+  <!-- KEUNGGULAN -->
+  <section class="section alt">
+    <div class="container center">
+      <h2 class="section-title">Kenapa pilih <span style="color:var(--brand-2)">Basorak</span>?</h2>
+      <p class="subtitle" style="margin:4px auto 18px;max-width:720px">Kami menjaga kesegaran, menekan biaya, dan memberi layanan yang jujur & ramah.</p>
+      <div class="features">
+        <div class="card"><h3>Fresh Terpilih</h3><p>Telur disortir dari peternak lokal terpercaya, datang segar setiap pekan.</p></div>
+        <div class="card"><h3>Harga Transparan</h3><p>Tanpa biaya tersembunyi. Ada opsi bundling hemat untuk kebutuhan besar.</p></div>
+        <div class="card"><h3>Pesan Kilat</h3><p>Chat WhatsApp, konfirmasi, dan tunggu diantar sesuai jadwal PO. Gampil!</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HARGA UTAMA dengan GAMBAR -->
+  <section id="harga" class="section">
+    <div class="container">
+      <h2 class="section-title center">Harga Utama</h2>
+      <div class="price-grid" style="margin-top:12px">
+        <!-- Ayam Omega -->
+        <article class="price">
+          <img class="price-img" src="assets/eggs-omega.png" alt="Telur Ayam Omega" />
+          <div class="price-body">
+            <span class="name">Ayam Omega</span>
+            <span class="badge-strike">Rp 29.000</span>
+            <span class="nom">Promo Spesial</span>
+            <span class="mini">Per box / pack</span>
+          </div>
+        </article>
+        <!-- Ayam Kampung -->
+        <article class="price">
+          <img class="price-img" src="assets/eggs-kampung.png" alt="Telur Ayam Kampung" />
+          <div class="price-body">
+            <span class="name">Ayam Kampung</span>
+            <span class="nom">Rp 38.000 / pack</span>
+            <span class="mini">Per box / pack</span>
+          </div>
+        </article>
+        <!-- Bebek -->
+        <article class="price">
+          <img class="price-img" src="assets/eggs-bebek.png" alt="Telur Bebek" />
+          <div class="price-body">
+            <span class="name">Bebek</span>
+            <span class="nom">Rp 40.000 / pack</span>
+            <span class="mini">Per box / pack</span>
+          </div>
+        </article>
+      </div>
+      <p class="subtitle" style="margin-top:10px">Periode PO #31: <strong>1 September 2025</strong></p>
+    </div>
+  </section>
+
+  <!-- TESTIMONI -->
+  <section class="section alt">
+    <div class="container">
+      <h2 class="section-title center">Apa Kata Mereka?</h2>
+      <p class="subtitle center" style="margin:4px auto 18px;max-width:720px">Testimoni jujur dari Sobat Basorak yang sudah langganan setiap pekan.</p>
+      <div class="testi">
+        <div class="t-card">
+          <div class="t-head"><div class="avatar">AN</div><div><strong>Anisa</strong><div class="stars">★★★★★</div></div></div>
+          <p>Telurnya fresh semua, jarang ada yang retak. Adminnya responsif, pengantaran sesuai janji.</p>
+        </div>
+        <div class="t-card">
+          <div class="t-head"><div class="avatar">RK</div><div><strong>Raka</strong><div class="stars">★★★★★</div></div></div>
+          <p>Harga bersahabat, cocok buat usaha roti saya. Sekarang tiap minggu fix repeat order.</p>
+        </div>
+        <div class="t-card">
+          <div class="t-head"><div class="avatar">MI</div><div><strong>Mia</strong><div class="stars">★★★★☆</div></div></div>
+          <p>Kualitas telur mantap dan bersih. Packaging rapi, sampai rumah aman.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA ORDER -->
+  <section id="order" class="section">
+    <div class="container">
+      <div class="cta center">
+        <h2 style="margin:0 0 8px">Siap Order?</h2>
+        <p class="subtitle" style="margin:0 0 14px">Klik tombol di bawah untuk chat admin. Tanyakan stok & pengiriman.</p>
+        <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
+          <a class="btn btn-primary" target="_blank" rel="noopener" href="https://wa.me/6281234567890?text=Halo%20Basorak%20Store,%20saya%20mau%20PO%20telur%20fresh">WhatsApp Admin</a>
+          <a class="btn btn-ghost" target="_blank" rel="noopener" href="https://instagram.com/basorak_store">Instagram</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section alt">
+    <div class="container">
+      <h2 class="section-title center">FAQ</h2>
+      <div style="max-width:800px;margin:14px auto 0;display:grid;gap:10px">
+        <details><summary>Bagaimana cara ikut PO?</summary><div class="subtitle" style="margin-top:6px">Chat WhatsApp, sebut jenis & jumlah. Admin konfirmasi jadwal & biaya kirim.</div></details>
+        <details><summary>Promo bisa kelipatan?</summary><div class="subtitle" style="margin-top:6px">Ya, berlaku kelipatan sesuai syarat minimal pembelian.</div></details>
+        <details><summary>Kapan pengumuman giveaway?</summary><div class="subtitle" style="margin-top:6px">Tanggal <strong>4 September 2025</strong> di IG @basorak_store.</div></details>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="container center">
+    <p class="subtitle">© <span id="y"></span> Basorak Store — Fresh Eggs, Fresh Day.</p>
+    <svg class="grass" viewBox="0 0 1440 200" preserveAspectRatio="none" aria-hidden="true">
+      <defs><linearGradient id="g" x1="0" x2="0" y1="0" y2="1"><stop offset="0%" stop-color="#2aa06d"/><stop offset="100%" stop-color="#146e4c"/></linearGradient></defs>
+      <path d="M0 130 C 180 90, 320 150, 540 120 C 760 90, 920 150, 1140 120 C 1300 100, 1370 130, 1440 120 L1440 200 L0 200 Z" fill="url(#g)"/>
+      <g stroke="#0e5a3f" stroke-width="4" stroke-linecap="round"><path d="M80 130 l10 -28 M100 128 l-8 -26 M120 132 l8 -22"/><path d="M260 128 l10 -28 M280 130 l-8 -24 M300 128 l8 -22"/><path d="M520 126 l10 -28 M540 128 l-8 -24 M560 126 l8 -22"/><path d="M780 128 l10 -28 M800 130 l-8 -24 M820 128 l8 -22"/><path d="M1040 126 l10 -28 M1060 128 l-8 -24 M1080 126 l8 -22"/><path d="M1280 128 l10 -28 M1300 130 l-8 -24 M1320 128 l8 -22"/></g>
+    </svg>
+  </footer>
+
+  <script>
+    document.getElementById('y').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
